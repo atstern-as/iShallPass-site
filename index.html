@@ -1,0 +1,555 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iShallPass – your garage door, from the driver's seat</title>
+<meta name="description" content="iShallPass opens and closes your iSmartGate garage door from the car's screen. For Android Automotive OS, made for Polestar 4.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #DCE0E4;
+    --surface: #EEF1F3;
+    --ink: #1B2127;
+    --muted: #535D67;
+    --line: #B6BEC6;
+    --orange: #F47B20;
+    --orange-ink: #B4530C;
+    --screen: #1F252B;
+    --screen-line: #333C45;
+    --screen-ink: #EEF1F3;
+    --screen-muted: #9AA4AE;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1F24;
+      --surface: #222930;
+      --ink: #EEF1F3;
+      --muted: #A3ACB5;
+      --line: #36404A;
+      --orange-ink: #F7954A;
+      --screen: #14181C;
+      --screen-line: #2C343C;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1.0625rem/1.6 "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--orange-ink); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  /* Language switch: only the chosen language is shown */
+  html[data-lang="en"] .no { display: none; }
+  html[data-lang="no"] .en { display: none; }
+
+  .wrap { max-width: 1120px; margin: 0 auto; padding: 0 24px; }
+
+  /* ---------- Header ---------- */
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0;
+  }
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 700 1.5rem/1 "Barlow Condensed", sans-serif;
+    letter-spacing: 0.01em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .wordmark svg { width: 30px; height: 30px; }
+  .lang {
+    display: flex;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .lang button {
+    font: 600 0.875rem/1 "Barlow", sans-serif;
+    background: transparent;
+    color: var(--muted);
+    border: 0;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    display: grid;
+    grid-template-columns: 1fr 1.05fr;
+    gap: 56px;
+    align-items: center;
+    padding: 40px 0 88px;
+  }
+  h1 {
+    font: 700 clamp(2.8rem, 6vw, 4.6rem)/0.98 "Barlow Condensed", sans-serif;
+    letter-spacing: -0.01em;
+    margin: 0 0 24px;
+    max-width: 11ch;
+  }
+  .lead { font-size: 1.1875rem; color: var(--muted); max-width: 34em; margin: 0 0 28px; }
+  .cta-row { display: flex; flex-wrap: wrap; align-items: center; gap: 16px 22px; }
+  .play {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    background: var(--orange);
+    color: #1B2127;
+    font: 600 1.0625rem/1 "Barlow", sans-serif;
+    text-decoration: none;
+    padding: 16px 26px;
+    border-radius: 999px;
+  }
+  .play:hover { background: #F68B3A; }
+  .fits { font-size: 0.9375rem; color: var(--muted); }
+
+  /* The car screen with a garage door in front of it */
+  .bay {
+    position: relative;
+    aspect-ratio: 16 / 10;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--screen);
+    box-shadow: 0 0 0 10px var(--surface), 0 0 0 11px var(--line);
+  }
+  .door {
+    position: absolute;
+    inset: 0;
+    z-index: 2;
+    background:
+      repeating-linear-gradient(
+        to bottom,
+        #E9ECEF 0 30px,
+        #C9CFD5 30px 32px,
+        #F5F7F8 32px 34px
+      );
+    transform: translateY(0);
+    transition: transform 1.6s cubic-bezier(.6, .02, .2, 1);
+    cursor: pointer;
+  }
+  .door::after {
+    /* Handle on the bottom panel */
+    content: "";
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    width: 64px;
+    height: 8px;
+    margin-left: -32px;
+    border-radius: 4px;
+    background: #9DA6AF;
+  }
+  .bay.open .door { transform: translateY(-101%); }
+
+  .screen {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+    padding: 6% 7%;
+    color: var(--screen-ink);
+    font-family: "Barlow", sans-serif;
+  }
+  .screen-title { font: 500 clamp(0.95rem, 1.8vw, 1.25rem)/1 "Barlow", sans-serif; letter-spacing: 0.04em; margin-bottom: 6%; }
+  .row {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+    padding: 2.6% 0;
+    border-bottom: 1px solid var(--screen-line);
+    font-size: clamp(0.85rem, 1.6vw, 1.0625rem);
+    letter-spacing: 0.02em;
+  }
+  .row svg { width: 26px; height: 26px; flex: none; }
+  .row b { font-weight: 500; }
+  .screen-btn {
+    margin-top: auto;
+    align-self: flex-start;
+    background: var(--orange);
+    color: #1B2127;
+    border: 0;
+    border-radius: 999px;
+    font: 600 clamp(0.8rem, 1.5vw, 1rem)/1 "Barlow", sans-serif;
+    letter-spacing: 0.03em;
+    padding: 4% 9%;
+    cursor: pointer;
+  }
+  .screen-btn:hover { background: #F68B3A; }
+
+  /* ---------- Sections ---------- */
+  section { padding: 72px 0; border-top: 1px solid var(--line); }
+  h2 {
+    font: 700 clamp(2rem, 4vw, 2.75rem)/1.05 "Barlow Condensed", sans-serif;
+    margin: 0 0 32px;
+  }
+  .features {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 0 56px;
+    margin: 0;
+  }
+  .feature { padding: 22px 0; border-top: 1px solid var(--line); }
+  .feature dt { font: 600 1.375rem/1.2 "Barlow Condensed", sans-serif; margin-bottom: 6px; }
+  .feature dd { margin: 0; color: var(--muted); max-width: 34em; }
+
+  .split { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 56px; }
+  .needs { list-style: none; margin: 0; padding: 0; }
+  .needs li { padding: 14px 0 14px 34px; border-top: 1px solid var(--line); position: relative; }
+  .needs li::before {
+    content: "";
+    position: absolute;
+    left: 4px;
+    top: 22px;
+    width: 14px;
+    height: 8px;
+    border-left: 3px solid var(--orange);
+    border-bottom: 3px solid var(--orange);
+    transform: rotate(-45deg);
+  }
+  .steps { margin: 0; padding: 0; list-style: none; counter-reset: step; }
+  .steps li {
+    counter-increment: step;
+    display: grid;
+    grid-template-columns: 44px 1fr;
+    gap: 12px;
+    padding: 14px 0;
+    border-top: 1px solid var(--line);
+  }
+  .steps li::before {
+    content: counter(step);
+    font: 700 1.5rem/1.1 "Barlow Condensed", sans-serif;
+    color: var(--orange-ink);
+  }
+  .note { font-size: 0.9375rem; color: var(--muted); margin-top: 18px; }
+
+  .privacy p { max-width: 40em; color: var(--muted); }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 32px 0 48px;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+  footer p { margin: 0 0 8px; max-width: 60em; }
+
+  @media (max-width: 860px) {
+    .hero { grid-template-columns: 1fr; gap: 40px; padding-bottom: 64px; }
+    .features, .split { grid-template-columns: 1fr; }
+    .split { gap: 40px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .door { transition: none; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+
+  <header>
+    <a class="wordmark" href="./">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M8 26 L32 10 L56 26 V54" fill="none" stroke="#F47B20" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 26 V54" fill="none" stroke="#F47B20" stroke-width="4" stroke-linecap="round"/>
+        <path d="M17 34 H47 M17 41 H47 M17 48 H47" stroke="#F47B20" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      iShallPass
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="no" aria-pressed="false">NO</button>
+    </div>
+  </header>
+
+  <!-- ---------- Hero ---------- -->
+  <div class="hero">
+    <div>
+      <h1>
+        <span class="en">Your garage door, from the driver's seat.</span>
+        <span class="no">Garasjeporten, rett fra førersetet.</span>
+      </h1>
+      <p class="lead">
+        <span class="en">iShallPass opens and closes your iSmartGate garage door from the car's screen, shows whether it's open, and tells you if it has been left open.</span>
+        <span class="no">iShallPass åpner og lukker garasjeporten din med iSmartGate fra bilens skjerm, viser om den står åpen, og sier fra hvis den blir stående åpen.</span>
+      </p>
+      <div class="cta-row">
+        <a class="play" href="https://play.google.com/store/apps/details?id=com.atstern.garage">
+          <svg width="18" height="20" viewBox="0 0 18 20" aria-hidden="true"><path d="M1 1 L17 10 L1 19 Z" fill="#1B2127"/></svg>
+          <span class="en">Get it on Google Play</span>
+          <span class="no">Last ned på Google Play</span>
+        </a>
+        <span class="fits">
+          <span class="en">For Android Automotive OS. Made for Polestar 4.</span>
+          <span class="no">For Android Automotive OS. Laget for Polestar 4.</span>
+        </span>
+      </div>
+    </div>
+
+    <!-- Car screen behind a garage door that opens on load -->
+    <div class="bay" id="bay">
+      <div class="screen">
+        <div class="screen-title">
+          <span class="en">GARAGE</span>
+          <span class="no">GARASJE</span>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M8 26 L32 10 L56 26 V54 M8 26 V54" fill="none" stroke="#F47B20" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path class="slats" d="M17 34 H47 M17 41 H47 M17 48 H47" stroke="#F47B20" stroke-width="3.5" stroke-linecap="round"/>
+          </svg>
+          <span>
+            <span class="en">STATUS: <b id="status-en">OPEN</b></span>
+            <span class="no">STATUS: <b id="status-no">ÅPEN</b></span>
+          </span>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M26 38 V14 a6 6 0 0 1 12 0 V38 a11 11 0 1 1 -12 0 Z" fill="none" stroke="#F47B20" stroke-width="4" stroke-linejoin="round"/>
+            <circle cx="32" cy="47" r="5" fill="#F47B20"/>
+          </svg>
+          <span>
+            <span class="en">TEMPERATURE: <b>11.2 °C</b></span>
+            <span class="no">TEMPERATUR: <b>11,2 °C</b></span>
+          </span>
+        </div>
+        <div class="row">
+          <svg viewBox="0 0 64 64" aria-hidden="true">
+            <path d="M8 18 Q8 12 14 12 L48 12 Q54 12 54 18 L54 46 Q54 52 48 52 L14 52 Q8 52 8 46 Z" fill="none" stroke="#F47B20" stroke-width="3.8" stroke-linejoin="round"/>
+            <path d="M54 24 L59 24 Q61 24 61 27 L61 37 Q61 40 59 40 L54 40" fill="none" stroke="#F47B20" stroke-width="3.8" stroke-linejoin="round"/>
+            <path d="M17 23 L17 41 M24 23 L24 41" stroke="#F47B20" stroke-width="4.5" stroke-linecap="round"/>
+          </svg>
+          <span>
+            <span class="en">BATTERY: <b>40 %</b></span>
+            <span class="no">BATTERI: <b>40 %</b></span>
+          </span>
+        </div>
+        <button class="screen-btn" id="screen-btn" type="button">
+          <span class="en" id="btn-en">CLOSE GARAGE</span>
+          <span class="no" id="btn-no">LUKK GARASJE</span>
+        </button>
+      </div>
+      <div class="door" aria-hidden="true"></div>
+    </div>
+  </div>
+
+  <!-- ---------- Features ---------- -->
+  <section aria-labelledby="what">
+    <h2 id="what">
+      <span class="en">What it does</span>
+      <span class="no">Dette gjør appen</span>
+    </h2>
+    <dl class="features">
+      <div class="feature">
+        <dt><span class="en">Open and close with one tap</span><span class="no">Åpne og lukk med ett trykk</span></dt>
+        <dd>
+          <span class="en">The app checks the real door position before it sends a command, so the door never moves the wrong way.</span>
+          <span class="no">Appen sjekker hvor porten faktisk står før den sender en kommando, så porten aldri går feil vei.</span>
+        </dd>
+      </div>
+      <div class="feature">
+        <dt><span class="en">Status at a glance</span><span class="no">Status med et blikk</span></dt>
+        <dd>
+          <span class="en">Open or closed, plus the temperature and sensor battery from your iSmartGate.</span>
+          <span class="no">Åpen eller lukket, pluss temperatur og sensorbatteri fra din iSmartGate.</span>
+        </dd>
+      </div>
+      <div class="feature">
+        <dt><span class="en">Open door alert</span><span class="no">Varsel om åpen port</span></dt>
+        <dd>
+          <span class="en">If the door is left open, you get a notification in the car and can close the door right from it. Choose 5 to 30 minutes, or turn it off.</span>
+          <span class="no">Står porten åpen for lenge, får du et varsel i bilen og kan lukke porten rett fra varselet. Velg 5 til 30 minutter, eller slå det av.</span>
+        </dd>
+      </div>
+      <div class="feature">
+        <dt><span class="en">Door 1, 2 or 3</span><span class="no">Port 1, 2 eller 3</span></dt>
+        <dd>
+          <span class="en">Choose which iSmartGate door the app controls.</span>
+          <span class="no">Velg hvilken port på din iSmartGate appen skal styre.</span>
+        </dd>
+      </div>
+      <div class="feature">
+        <dt><span class="en">Your login stays in the car</span><span class="no">Innloggingen blir i bilen</span></dt>
+        <dd>
+          <span class="en">Encrypted with Android Keystore and sent only to your own iSmartGate. No accounts, no tracking.</span>
+          <span class="no">Kryptert med Android Keystore og sendt bare til din egen iSmartGate. Ingen kontoer, ingen sporing.</span>
+        </dd>
+      </div>
+      <div class="feature">
+        <dt><span class="en">In your language</span><span class="no">På ditt språk</span></dt>
+        <dd>
+          <span class="en">English, Norwegian, Danish and Swedish, following the car's language setting.</span>
+          <span class="no">Engelsk, norsk, dansk og svensk, etter bilens språkinnstilling.</span>
+        </dd>
+      </div>
+    </dl>
+  </section>
+
+  <!-- ---------- Requirements and setup ---------- -->
+  <section aria-labelledby="start">
+    <div class="split">
+      <div>
+        <h2 id="start">
+          <span class="en">What you need</span>
+          <span class="no">Dette trenger du</span>
+        </h2>
+        <ul class="needs">
+          <li>
+            <span class="en">A car with Android Automotive OS and Google Play, such as Polestar 4.</span>
+            <span class="no">En bil med Android Automotive OS og Google Play, for eksempel Polestar 4.</span>
+          </li>
+          <li>
+            <span class="en">An iSmartGate with remote access, and its UID, username and password.</span>
+            <span class="no">En iSmartGate med fjerntilgang, og UID, brukernavn og passord til den.</span>
+          </li>
+          <li>
+            <span class="en">An internet connection in the car.</span>
+            <span class="no">Internett i bilen.</span>
+          </li>
+        </ul>
+        <p class="note">
+          <span class="en">Your UID is the part before .isgaccess.com in your iSmartGate web address.</span>
+          <span class="no">UID-en er delen før .isgaccess.com i nettadressen til din iSmartGate.</span>
+        </p>
+      </div>
+      <div>
+        <h2>
+          <span class="en">Set up in a minute</span>
+          <span class="no">Klar på et minutt</span>
+        </h2>
+        <ol class="steps">
+          <li>
+            <span>
+              <span class="en">Install iShallPass from Google Play in the car.</span>
+              <span class="no">Installer iShallPass fra Google Play i bilen.</span>
+            </span>
+          </li>
+          <li>
+            <span>
+              <span class="en">Enter your iSmartGate UID, username and password.</span>
+              <span class="no">Skriv inn UID, brukernavn og passord til din iSmartGate.</span>
+            </span>
+          </li>
+          <li>
+            <span>
+              <span class="en">Test the connection. The app tells you if something needs fixing.</span>
+              <span class="no">Test tilkoblingen. Appen sier fra hvis noe må rettes.</span>
+            </span>
+          </li>
+          <li>
+            <span>
+              <span class="en">Allow notifications to get the open door alert.</span>
+              <span class="no">Tillat varsler for å få varsel om åpen port.</span>
+            </span>
+          </li>
+        </ol>
+        <p class="note">
+          <span class="en">The car shows the keyboard only when parked, so set up before you drive.</span>
+          <span class="no">Bilen viser tastaturet bare når den står parkert, så gjør oppsettet før du kjører.</span>
+        </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ---------- Privacy ---------- -->
+  <section class="privacy" aria-labelledby="privacy">
+    <h2 id="privacy">
+      <span class="en">Privacy</span>
+      <span class="no">Personvern</span>
+    </h2>
+    <p>
+      <span class="en">iShallPass collects no personal data for the developer. Your login is stored encrypted in the car and sent only to your own iSmartGate. <a href="privacy.html">Read the privacy policy</a>.</span>
+      <span class="no">iShallPass samler ikke inn personopplysninger til utvikleren. Innloggingen lagres kryptert i bilen og sendes bare til din egen iSmartGate. <a href="privacy.html">Les personvernerklæringen</a>.</span>
+    </p>
+  </section>
+
+</div>
+
+<footer>
+  <div class="wrap">
+    <p>
+      <span class="en">iShallPass is made by Atstern AS. Contact: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a></span>
+      <span class="no">iShallPass er laget av Atstern AS. Kontakt: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a></span>
+    </p>
+    <p>
+      <span class="en">iShallPass is an independent app and is not affiliated with iSmartGate or Polestar. iSmartGate and Polestar are trademarks of their respective owners.</span>
+      <span class="no">iShallPass er en uavhengig app og har ingen tilknytning til iSmartGate eller Polestar. iSmartGate og Polestar er varemerker som tilhører sine respektive eiere.</span>
+    </p>
+  </div>
+</footer>
+
+<script>
+  // ---------- Language ----------
+  // Default: Norwegian for Norwegian browsers, otherwise English.
+  // The choice is remembered in this browser.
+  (function () {
+    var root = document.documentElement;
+    var saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    var browser = (navigator.language || "en").toLowerCase();
+    var initial = saved || (/^(nb|nn|no)/.test(browser) ? "no" : "en");
+
+    function setLang(lang) {
+      root.setAttribute("data-lang", lang);
+      root.setAttribute("lang", lang === "no" ? "nb" : "en");
+      document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.setLang === lang));
+      });
+      try { localStorage.setItem("lang", lang); } catch (e) {}
+    }
+
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+      b.addEventListener("click", function () { setLang(b.dataset.setLang); });
+    });
+    setLang(initial);
+  })();
+
+  // ---------- Garage door ----------
+  // The door rolls up once when the page loads. The button on the
+  // car screen closes and opens it again.
+  (function () {
+    var bay = document.getElementById("bay");
+    var btn = document.getElementById("screen-btn");
+    var open = false;
+
+    function render() {
+      bay.classList.toggle("open", open);
+      document.getElementById("status-en").textContent = open ? "OPEN" : "CLOSED";
+      document.getElementById("status-no").textContent = open ? "ÅPEN" : "LUKKET";
+      document.getElementById("btn-en").textContent = open ? "CLOSE GARAGE" : "OPEN GARAGE";
+      document.getElementById("btn-no").textContent = open ? "LUKK GARASJE" : "ÅPNE GARASJE";
+    }
+
+    btn.addEventListener("click", function () {
+      open = !open;
+      render();
+    });
+
+    // The closed door covers the button, so a click on the door opens it
+    document.querySelector(".door").addEventListener("click", function () {
+      if (!open) { open = true; render(); }
+    });
+
+    // Show the closed door briefly, then open it
+    setTimeout(function () { open = true; render(); }, 500);
+  })();
+</script>
+</body>
+</html>

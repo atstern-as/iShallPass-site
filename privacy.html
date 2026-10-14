@@ -1,0 +1,289 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iShallPass – Privacy policy</title>
+<meta name="description" content="Privacy policy for the iShallPass app by Atstern AS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #DCE0E4;
+    --surface: #EEF1F3;
+    --ink: #1B2127;
+    --muted: #535D67;
+    --line: #B6BEC6;
+    --orange: #F47B20;
+    --orange-ink: #B4530C;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1F24;
+      --surface: #222930;
+      --ink: #EEF1F3;
+      --muted: #A3ACB5;
+      --line: #36404A;
+      --orange-ink: #F7954A;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1.0625rem/1.65 "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--orange-ink); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  html[data-lang="en"] .no { display: none; }
+  html[data-lang="no"] .en { display: none; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0;
+  }
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 700 1.5rem/1 "Barlow Condensed", sans-serif;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .wordmark svg { width: 30px; height: 30px; }
+  .lang {
+    display: flex;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .lang button {
+    font: 600 0.875rem/1 "Barlow", sans-serif;
+    background: transparent;
+    color: var(--muted);
+    border: 0;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+  main { padding: 24px 0 64px; }
+  h1 {
+    font: 700 clamp(2.4rem, 5vw, 3.4rem)/1 "Barlow Condensed", sans-serif;
+    margin: 16px 0 8px;
+  }
+  .date { color: var(--muted); margin: 0 0 32px; }
+  .summary {
+    font-size: 1.1875rem;
+    padding: 20px 0;
+    border-top: 3px solid var(--orange);
+    border-bottom: 1px solid var(--line);
+    margin: 0 0 16px;
+  }
+  h2 {
+    font: 600 1.625rem/1.2 "Barlow Condensed", sans-serif;
+    margin: 40px 0 12px;
+  }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+
+  .table-wrap { overflow-x: auto; margin: 0 0 14px; }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.9375rem; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0 48px;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="wordmark" href="./">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M8 26 L32 10 L56 26 V54" fill="none" stroke="#F47B20" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 26 V54" fill="none" stroke="#F47B20" stroke-width="4" stroke-linecap="round"/>
+        <path d="M17 34 H47 M17 41 H47 M17 48 H47" stroke="#F47B20" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      iShallPass
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="no" aria-pressed="false">NO</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== ENGLISH ===================== -->
+    <div class="en">
+      <h1>Privacy policy</h1>
+      <p class="date">Effective from 1 October 2026</p>
+
+      <p class="summary">iShallPass does not collect any personal data for the developer. Your iSmartGate login stays in your car and is sent only to your own iSmartGate, so the app can open and close your garage door.</p>
+
+      <h2>Who is responsible</h2>
+      <p>iShallPass is developed and owned by Atstern AS, organisation number 837 920 892, Skansejordet 3b, 1383 Asker, Norway. Contact: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a>.</p>
+      <p>iShallPass is an app for Android Automotive OS (for example Polestar 4). It shows the status of your garage door and lets you open and close it through your iSmartGate.</p>
+
+      <h2>Data the app handles</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Data</th><th>Why</th><th>Where it is stored</th><th>Sent to</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>iSmartGate UID</td><td>To find your iSmartGate</td><td>In the app, on the car only</td><td>Your iSmartGate, via isgaccess.com</td></tr>
+            <tr><td>Username and password</td><td>To log in to your iSmartGate</td><td>Encrypted with Android Keystore, on the car only</td><td>Your iSmartGate, via isgaccess.com</td></tr>
+            <tr><td>Door status, temperature, battery level</td><td>To show them on screen</td><td>Not stored</td><td>Read from your iSmartGate</td></tr>
+            <tr><td>Settings (selected door, temperature unit, alert time)</td><td>To remember your choices</td><td>In the app, on the car only</td><td>Nobody</td></tr>
+            <tr><td>Time the door was first seen open</td><td>For the open door alert</td><td>In the app, on the car only</td><td>Nobody</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>All communication with iSmartGate uses an encrypted connection (HTTPS). The app talks only to your own iSmartGate. iSmartGate's handling of your data is covered by iSmartGate's own privacy policy.</p>
+
+      <h2>What the app does not do</h2>
+      <ul>
+        <li>It does not send any data to Atstern AS or to any server run by Atstern AS.</li>
+        <li>It does not use analytics, tracking or advertising.</li>
+        <li>It does not use your location.</li>
+        <li>It does not share or sell data to anyone.</li>
+        <li>It does not back up your login to the cloud.</li>
+      </ul>
+      <p>Google Play may collect data about installs and app usage under Google's own privacy policy.</p>
+
+      <h2>Permissions</h2>
+      <ul>
+        <li><strong>Internet:</strong> to communicate with your iSmartGate.</li>
+        <li><strong>Notifications:</strong> to tell you if the garage door has been left open. You can turn this off in the app or in the car's settings.</li>
+      </ul>
+
+      <h2>Deleting your data</h2>
+      <p>All data is stored only in the car. You can delete it at any time by clearing the app's storage in the car's settings, or by uninstalling the app.</p>
+
+      <h2>Children</h2>
+      <p>The app is not directed at children under 13 and does not knowingly collect data from them.</p>
+
+      <h2>Changes</h2>
+      <p>If this policy changes, the updated version will be published on this page with a new date.</p>
+
+      <h2>Contact</h2>
+      <p>Questions about privacy: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a>.</p>
+    </div>
+
+    <!-- ===================== NORSK ===================== -->
+    <div class="no">
+      <h1>Personvernerklæring</h1>
+      <p class="date">Gjelder fra 1. oktober 2026</p>
+
+      <p class="summary">iShallPass samler ikke inn personopplysninger til utvikleren. Innloggingen din til iSmartGate blir i bilen, og sendes bare til din egen iSmartGate, slik at appen kan åpne og lukke garasjeporten.</p>
+
+      <h2>Hvem som er ansvarlig</h2>
+      <p>iShallPass er utviklet og eies av Atstern AS, organisasjonsnummer 837 920 892, Skansejordet 3b, 1383 Asker. Kontakt: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a>.</p>
+      <p>iShallPass er en app for Android Automotive OS (for eksempel Polestar 4). Den viser status på garasjeporten og lar deg åpne og lukke den via din iSmartGate.</p>
+
+      <h2>Data appen håndterer</h2>
+      <div class="table-wrap">
+        <table>
+          <thead>
+            <tr><th>Data</th><th>Hvorfor</th><th>Hvor det lagres</th><th>Sendes til</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>iSmartGate UID</td><td>For å finne din iSmartGate</td><td>I appen, bare i bilen</td><td>Din iSmartGate, via isgaccess.com</td></tr>
+            <tr><td>Brukernavn og passord</td><td>For å logge inn på din iSmartGate</td><td>Kryptert med Android Keystore, bare i bilen</td><td>Din iSmartGate, via isgaccess.com</td></tr>
+            <tr><td>Portstatus, temperatur, batterinivå</td><td>For å vise dem på skjermen</td><td>Lagres ikke</td><td>Hentes fra din iSmartGate</td></tr>
+            <tr><td>Innstillinger (valgt port, temperaturenhet, varseltid)</td><td>For å huske valgene dine</td><td>I appen, bare i bilen</td><td>Ingen</td></tr>
+            <tr><td>Tidspunkt porten først ble sett åpen</td><td>For varsel om åpen port</td><td>I appen, bare i bilen</td><td>Ingen</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>All kommunikasjon med iSmartGate skjer over en kryptert forbindelse (HTTPS). Appen kommuniserer bare med din egen iSmartGate. iSmartGates behandling av dine data dekkes av iSmartGates egen personvernerklæring.</p>
+
+      <h2>Dette gjør ikke appen</h2>
+      <ul>
+        <li>Den sender ingen data til Atstern AS eller til servere Atstern AS driver.</li>
+        <li>Den bruker ikke analyse, sporing eller reklame.</li>
+        <li>Den bruker ikke posisjonen din.</li>
+        <li>Den deler eller selger ikke data til noen.</li>
+        <li>Den tar ikke sikkerhetskopi av innloggingen din i skyen.</li>
+      </ul>
+      <p>Google Play kan samle inn data om installasjoner og bruk etter Googles egen personvernerklæring.</p>
+
+      <h2>Tillatelser</h2>
+      <ul>
+        <li><strong>Internett:</strong> for å kommunisere med din iSmartGate.</li>
+        <li><strong>Varsler:</strong> for å si fra hvis garasjeporten har stått åpen for lenge. Du kan slå dette av i appen eller i bilens innstillinger.</li>
+      </ul>
+
+      <h2>Slette dataene dine</h2>
+      <p>Alle data lagres bare i bilen. Du kan slette dem når som helst ved å tømme appens lagringsplass i bilens innstillinger, eller ved å avinstallere appen.</p>
+
+      <h2>Barn</h2>
+      <p>Appen er ikke rettet mot barn under 13 år og samler ikke bevisst inn data fra dem.</p>
+
+      <h2>Endringer</h2>
+      <p>Hvis erklæringen endres, publiseres den oppdaterte versjonen på denne siden med ny dato.</p>
+
+      <h2>Kontakt</h2>
+      <p>Spørsmål om personvern: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a>.</p>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span class="en">iShallPass is made by Atstern AS. <a href="./">Back to iShallPass</a></span>
+    <span class="no">iShallPass er laget av Atstern AS. <a href="./">Tilbake til iShallPass</a></span>
+  </div>
+</footer>
+
+<script>
+  // Language: Norwegian for Norwegian browsers, otherwise English.
+  // The choice is shared with the front page in this browser.
+  (function () {
+    var root = document.documentElement;
+    var saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    var browser = (navigator.language || "en").toLowerCase();
+    var initial = saved || (/^(nb|nn|no)/.test(browser) ? "no" : "en");
+
+    function setLang(lang) {
+      root.setAttribute("data-lang", lang);
+      root.setAttribute("lang", lang === "no" ? "nb" : "en");
+      document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.setLang === lang));
+      });
+      try { localStorage.setItem("lang", lang); } catch (e) {}
+    }
+
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+      b.addEventListener("click", function () { setLang(b.dataset.setLang); });
+    });
+    setLang(initial);
+  })();
+</script>
+</body>
+</html>
