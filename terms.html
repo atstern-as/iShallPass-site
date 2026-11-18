@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="en" data-lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>iShallPass – Terms of use</title>
+<meta name="description" content="Terms of use for the iShallPass app by Atstern AS.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@600;700&family=Barlow:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #DCE0E4;
+    --surface: #EEF1F3;
+    --ink: #1B2127;
+    --muted: #535D67;
+    --line: #B6BEC6;
+    --orange: #F47B20;
+    --orange-ink: #B4530C;
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #1A1F24;
+      --surface: #222930;
+      --ink: #EEF1F3;
+      --muted: #A3ACB5;
+      --line: #36404A;
+      --orange-ink: #F7954A;
+      color-scheme: dark;
+    }
+  }
+
+  * { box-sizing: border-box; }
+  html, body { margin: 0; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 1.0625rem/1.65 "Barlow", system-ui, -apple-system, "Segoe UI", sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  a { color: var(--orange-ink); text-underline-offset: 3px; }
+  a:focus-visible, button:focus-visible {
+    outline: 3px solid var(--orange);
+    outline-offset: 3px;
+    border-radius: 4px;
+  }
+
+  html[data-lang="en"] .no { display: none; }
+  html[data-lang="no"] .en { display: none; }
+
+  .wrap { max-width: 760px; margin: 0 auto; padding: 0 24px; }
+
+  header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 22px 0;
+  }
+  .wordmark {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    font: 700 1.5rem/1 "Barlow Condensed", sans-serif;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .wordmark svg { width: 30px; height: 30px; }
+  .lang {
+    display: flex;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    overflow: hidden;
+  }
+  .lang button {
+    font: 600 0.875rem/1 "Barlow", sans-serif;
+    background: transparent;
+    color: var(--muted);
+    border: 0;
+    padding: 8px 14px;
+    cursor: pointer;
+  }
+  .lang button[aria-pressed="true"] { background: var(--ink); color: var(--bg); }
+
+  main { padding: 24px 0 64px; }
+  h1 {
+    font: 700 clamp(2.4rem, 5vw, 3.4rem)/1 "Barlow Condensed", sans-serif;
+    margin: 16px 0 8px;
+  }
+  .date { color: var(--muted); margin: 0 0 32px; }
+  .summary {
+    font-size: 1.1875rem;
+    padding: 20px 0;
+    border-top: 3px solid var(--orange);
+    border-bottom: 1px solid var(--line);
+    margin: 0 0 16px;
+  }
+  h2 {
+    font: 600 1.625rem/1.2 "Barlow Condensed", sans-serif;
+    margin: 40px 0 12px;
+  }
+  p { margin: 0 0 14px; }
+  ul { margin: 0 0 14px; padding-left: 22px; }
+  li { margin-bottom: 6px; }
+
+  .table-wrap { overflow-x: auto; margin: 0 0 14px; }
+  table { border-collapse: collapse; width: 100%; min-width: 560px; font-size: 0.9375rem; }
+  th, td { text-align: left; vertical-align: top; padding: 10px 12px 10px 0; border-bottom: 1px solid var(--line); }
+  th { font-weight: 600; }
+
+  footer {
+    border-top: 1px solid var(--line);
+    padding: 28px 0 48px;
+    font-size: 0.875rem;
+    color: var(--muted);
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <a class="wordmark" href="./">
+      <svg viewBox="0 0 64 64" aria-hidden="true">
+        <path d="M8 26 L32 10 L56 26 V54" fill="none" stroke="#F47B20" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+        <path d="M8 26 V54" fill="none" stroke="#F47B20" stroke-width="4" stroke-linecap="round"/>
+        <path d="M17 34 H47 M17 41 H47 M17 48 H47" stroke="#F47B20" stroke-width="3.5" stroke-linecap="round"/>
+      </svg>
+      iShallPass
+    </a>
+    <div class="lang" role="group" aria-label="Language">
+      <button type="button" data-set-lang="en" aria-pressed="true">EN</button>
+      <button type="button" data-set-lang="no" aria-pressed="false">NO</button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ===================== ENGLISH ===================== -->
+    <div class="en">
+      <h1>Terms of use</h1>
+      <p class="date">Effective from 18 November 2026</p>
+
+      <p class="summary">iShallPass lets you open and close your garage door from your car's display. You are responsible for using your garage door safely, and the app depends on iSmartGate's service, which Atstern AS does not control.</p>
+
+      <h2>About these terms</h2>
+      <p>These terms apply to the iShallPass app for Android Automotive OS (cars with Google built-in). By buying or using the app, you accept these terms. The purchase itself is handled by Google Play, under Google Play's terms.</p>
+      <p>The app is developed by Atstern AS, organisation number 837 920 892, Skansejordet 3b, 1383 Asker, Norway. Contact: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a>.</p>
+      <p>Nothing in these terms limits any rights you have under mandatory consumer law in the country where you live.</p>
+
+      <h2>Your licence</h2>
+      <p>When you buy iShallPass, you get a personal, non-exclusive right to use the app in the cars where you install it through Google Play. You may not copy, sell, modify or reverse engineer the app, except where the law allows it.</p>
+
+      <h2>What you need</h2>
+      <ul>
+        <li>An iSmartGate device installed on your garage door, with a working door sensor.</li>
+        <li>Remote access enabled in iSmartGate, and your iSmartGate UID, username and password.</li>
+        <li>A car with Google built-in and an internet connection.</li>
+      </ul>
+      <p>The app is tested in the Polestar 4 and Polestar 2. It is made to work in all cars with Google built-in, but we cannot guarantee that it works in every car model or software version.</p>
+
+      <h2>iSmartGate</h2>
+      <p>iShallPass uses iSmartGate's cloud service to talk to your iSmartGate. Atstern AS is not affiliated with iSmartGate and has no control over its service. If iSmartGate is unavailable, or changes or stops its service, the app may not work, partly or completely. We will try to keep the app working, but we cannot promise that this is always possible.</p>
+
+      <h2>Safe use</h2>
+      <ul>
+        <li>You are responsible for operating your garage door safely. Make sure that no people, animals, vehicles or objects are in the way before you open or close the door.</li>
+        <li>Always check that the door is closed before you leave. The status in the app and the open door alert depend on the door sensor, the network and iSmartGate, and can be wrong or delayed.</li>
+        <li>Only use the app when it is safe to do so, and never let it distract you while driving. Follow the traffic rules where you drive.</li>
+        <li>The open door alert is a help, not a guarantee. Alerts can be delayed or not shown, for example if the car has no network, is switched off, or handles notifications in its own way.</li>
+      </ul>
+
+      <h2>Your garage door opener</h2>
+      <p>iShallPass only sends open and close commands to your garage door opener through iSmartGate, in the same way as a wall button or remote control. The app does not control, replace or bypass the safety functions of the opener, such as obstacle detection, photo eyes (light beams), automatic reversal or warning lights.</p>
+      <p>These safety functions are the responsibility of the manufacturer and installer of the garage door and opener. As the owner, you are responsible for having them correctly installed, maintained and tested regularly, as described by the manufacturer. Do not use the app if the safety functions do not work. This is especially important because the app lets you close the door when you cannot see it.</p>
+
+      <h2>Remote operation and access</h2>
+      <p>Unlike a normal remote control, iShallPass works over the internet. The door can be opened and closed from anywhere the car has a connection, also when you are far away from the garage and cannot see the door.</p>
+      <ul>
+        <li>Only open the door when you are present, or when you are sure that it is safe and that you have control over who gets access to the garage.</li>
+        <li>If the door is opened by mistake, or while you are away, you are responsible for closing it and for securing the garage. Always check the status in the app, or check the door yourself.</li>
+        <li>Atstern AS is not responsible for loss or damage, such as theft, burglary or unauthorised access, that occurs because the door has been opened with the app, whether by you or by someone with access to your car or login.</li>
+      </ul>
+      <p>Your iSmartGate login is stored encrypted in the car. Anyone who can use your driver profile in the car can open and close your garage door with the app. Protect your driver profile, for example with a PIN code if your car offers it, and remove your login from the app (or uninstall it) before you sell or lend out the car.</p>
+
+      <h2>Updates</h2>
+      <p>We may update the app to fix errors, improve it or adapt it to changes in cars or in iSmartGate. Some functions may be changed or removed if necessary.</p>
+
+      <h2>Limitation of liability</h2>
+      <p>The app is provided as is. To the extent permitted by law, Atstern AS is not liable for indirect or consequential loss, such as damage to property, theft, loss of use or lost profit, caused by the use of the app, errors in the app, or iSmartGate's service.</p>
+      <p>To the extent permitted by law, the total liability of Atstern AS is limited to the amount you paid for the app.</p>
+      <p>This does not limit liability for injury to persons, or for loss caused by gross negligence or intent, or any other liability that cannot be limited under the law that applies to you.</p>
+
+      <h2>Refunds</h2>
+      <p>Refunds are handled by Google Play under Google Play's refund policies. This does not affect your rights under consumer law.</p>
+
+      <h2>Privacy</h2>
+      <p>How the app handles data is described in the <a href="privacy.html">privacy policy</a>.</p>
+
+      <h2>Trademarks</h2>
+      <p>iSmartGate, Polestar, Google, Android and Google Play are trademarks of their respective owners. iShallPass is not affiliated with or endorsed by them.</p>
+
+      <h2>Changes to these terms</h2>
+      <p>If these terms change, the updated version will be published on this page with a new date. Important changes will also be described in the app's release notes in Google Play.</p>
+
+      <h2>Law and disputes</h2>
+      <p>These terms are governed by Norwegian law. If you are a consumer, you also keep the protection of the mandatory consumer law in the country where you live. Please contact us first if something is wrong, so we can try to solve it together. Consumers in Norway can also contact the Norwegian Consumer Council (Forbrukerrådet).</p>
+
+      <h2>Contact</h2>
+      <p>Questions about these terms: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a>.</p>
+    </div>
+
+    <!-- ===================== NORSK ===================== -->
+    <div class="no">
+      <h1>Bruksvilkår</h1>
+      <p class="date">Gjelder fra 18. november 2026</p>
+
+      <p class="summary">iShallPass lar deg åpne og lukke garasjeporten fra bilens skjerm. Du er selv ansvarlig for å bruke garasjeporten trygt, og appen er avhengig av iSmartGates tjeneste, som Atstern AS ikke styrer.</p>
+
+      <h2>Om disse vilkårene</h2>
+      <p>Disse vilkårene gjelder appen iShallPass for Android Automotive OS (biler med Google innebygd). Ved å kjøpe eller bruke appen godtar du vilkårene. Selve kjøpet håndteres av Google Play, etter Google Plays vilkår.</p>
+      <p>Appen er utviklet av Atstern AS, organisasjonsnummer 837 920 892, Skansejordet 3b, 1383 Asker. Kontakt: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a>.</p>
+      <p>Ingenting i disse vilkårene begrenser rettigheter du har etter ufravikelig forbrukerlovgivning i landet der du bor.</p>
+
+      <h2>Din bruksrett</h2>
+      <p>Når du kjøper iShallPass, får du en personlig, ikke-eksklusiv rett til å bruke appen i bilene der du installerer den via Google Play. Du kan ikke kopiere, selge, endre eller dekompilere appen, bortsett fra der loven tillater det.</p>
+
+      <h2>Dette trenger du</h2>
+      <ul>
+        <li>En iSmartGate-enhet installert på garasjeporten, med en sensor som virker.</li>
+        <li>Fjerntilgang aktivert i iSmartGate, og din iSmartGate UID, brukernavn og passord.</li>
+        <li>En bil med Google innebygd og internettforbindelse.</li>
+      </ul>
+      <p>Appen er testet i Polestar 4 og Polestar 2. Den er laget for å fungere i alle biler med Google innebygd, men vi kan ikke garantere at den virker i alle bilmodeller og programvareversjoner.</p>
+
+      <h2>iSmartGate</h2>
+      <p>iShallPass bruker iSmartGates skytjeneste for å kommunisere med din iSmartGate. Atstern AS er ikke tilknyttet iSmartGate og har ingen kontroll over tjenesten. Hvis iSmartGate er utilgjengelig, eller endrer eller avslutter tjenesten, kan appen slutte å virke, helt eller delvis. Vi vil prøve å holde appen i drift, men kan ikke love at det alltid er mulig.</p>
+
+      <h2>Trygg bruk</h2>
+      <ul>
+        <li>Du er selv ansvarlig for å bruke garasjeporten trygt. Sørg for at ingen personer, dyr, kjøretøy eller gjenstander er i veien før du åpner eller lukker porten.</li>
+        <li>Kontroller alltid at porten er lukket før du forlater stedet. Statusen i appen og varselet om åpen port er avhengig av portsensoren, nettverket og iSmartGate, og kan være feil eller forsinket.</li>
+        <li>Bruk bare appen når det er trygt, og la den aldri ta oppmerksomheten fra kjøringen. Følg trafikkreglene der du kjører.</li>
+        <li>Varselet om åpen port er en hjelp, ikke en garanti. Varsler kan bli forsinket eller ikke vises, for eksempel hvis bilen ikke har nett, er avslått eller håndterer varsler på sin egen måte.</li>
+      </ul>
+
+      <h2>Portåpneren din</h2>
+      <p>iShallPass sender bare kommandoer om å åpne og lukke til portåpneren din via iSmartGate, på samme måte som en veggbryter eller fjernkontroll. Appen styrer, erstatter eller overstyrer ikke sikkerhetsfunksjonene i portåpneren, som hindringsdeteksjon, fotoceller (lysstråler), automatisk reversering eller varsellys.</p>
+      <p>Disse sikkerhetsfunksjonene er ansvaret til produsenten og installatøren av garasjeporten og portåpneren. Som eier er du ansvarlig for at de er riktig installert, vedlikeholdt og testet jevnlig, slik produsenten beskriver. Ikke bruk appen hvis sikkerhetsfunksjonene ikke virker. Dette er særlig viktig fordi appen lar deg lukke porten når du ikke ser den.</p>
+
+      <h2>Fjernstyring og tilgang</h2>
+      <p>I motsetning til en vanlig fjernkontroll virker iShallPass over internett. Porten kan åpnes og lukkes fra hvor som helst bilen har forbindelse, også når du er langt unna garasjen og ikke kan se porten.</p>
+      <ul>
+        <li>Åpne bare porten når du er til stede, eller når du er sikker på at det er trygt og at du har kontroll over hvem som får tilgang til garasjen.</li>
+        <li>Blir porten åpnet ved en feil, eller mens du er borte, er du selv ansvarlig for å lukke den og sikre garasjen. Kontroller alltid statusen i appen, eller sjekk porten selv.</li>
+        <li>Atstern AS er ikke ansvarlig for tap eller skade, som tyveri, innbrudd eller uønsket tilgang, som skjer fordi porten er åpnet med appen, enten av deg eller av noen med tilgang til bilen eller innloggingen din.</li>
+      </ul>
+      <p>Innloggingen din til iSmartGate lagres kryptert i bilen. Alle som kan bruke førerprofilen din i bilen, kan åpne og lukke garasjeporten med appen. Beskytt førerprofilen, for eksempel med PIN-kode hvis bilen har det, og fjern innloggingen fra appen (eller avinstaller den) før du selger eller låner bort bilen.</p>
+
+      <h2>Oppdateringer</h2>
+      <p>Vi kan oppdatere appen for å rette feil, forbedre den eller tilpasse den til endringer i biler eller hos iSmartGate. Enkelte funksjoner kan bli endret eller fjernet hvis det er nødvendig.</p>
+
+      <h2>Ansvarsbegrensning</h2>
+      <p>Appen leveres som den er. Så langt loven tillater, er Atstern AS ikke ansvarlig for indirekte tap eller følgetap, som skade på eiendom, tyveri, tapt bruk eller tapt fortjeneste, som skyldes bruk av appen, feil i appen eller iSmartGates tjeneste.</p>
+      <p>Så langt loven tillater, er Atstern AS sitt samlede ansvar begrenset til beløpet du betalte for appen.</p>
+      <p>Dette begrenser ikke ansvar for personskade, for tap som skyldes grov uaktsomhet eller forsett, eller annet ansvar som ikke kan begrenses etter loven som gjelder for deg.</p>
+
+      <h2>Refusjon</h2>
+      <p>Refusjon håndteres av Google Play etter Google Plays regler for refusjon. Det påvirker ikke rettighetene dine etter forbrukerlovgivningen.</p>
+
+      <h2>Personvern</h2>
+      <p>Hvordan appen håndterer data, er beskrevet i <a href="privacy.html">personvernerklæringen</a>.</p>
+
+      <h2>Varemerker</h2>
+      <p>iSmartGate, Polestar, Google, Android og Google Play er varemerker som tilhører sine respektive eiere. iShallPass er ikke tilknyttet eller godkjent av dem.</p>
+
+      <h2>Endringer i vilkårene</h2>
+      <p>Hvis vilkårene endres, publiseres den oppdaterte versjonen på denne siden med ny dato. Viktige endringer beskrives også i oppdateringsnotatene for appen i Google Play.</p>
+
+      <h2>Lovvalg og tvister</h2>
+      <p>Vilkårene reguleres av norsk rett. Er du forbruker, beholder du også vernet i ufravikelig forbrukerlovgivning i landet der du bor. Kontakt oss gjerne først hvis noe er galt, så prøver vi å løse det sammen. Forbrukere i Norge kan også kontakte Forbrukerrådet.</p>
+
+      <h2>Kontakt</h2>
+      <p>Spørsmål om vilkårene: <a href="mailto:webmaster@atstern.no">webmaster@atstern.no</a>.</p>
+    </div>
+
+  </main>
+</div>
+
+<footer>
+  <div class="wrap">
+    <span class="en">iShallPass is made by Atstern AS. <a href="./">Back to iShallPass</a> · <a href="privacy.html">Privacy policy</a></span>
+    <span class="no">iShallPass er laget av Atstern AS. <a href="./">Tilbake til iShallPass</a> · <a href="privacy.html">Personvernerklæring</a></span>
+  </div>
+</footer>
+
+<script>
+  // Language: Norwegian for Norwegian browsers, otherwise English.
+  // The choice is shared with the front page in this browser.
+  (function () {
+    var root = document.documentElement;
+    var saved = null;
+    try { saved = localStorage.getItem("lang"); } catch (e) {}
+    var browser = (navigator.language || "en").toLowerCase();
+    var initial = saved || (/^(nb|nn|no)/.test(browser) ? "no" : "en");
+
+    function setLang(lang) {
+      root.setAttribute("data-lang", lang);
+      root.setAttribute("lang", lang === "no" ? "nb" : "en");
+      document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+        b.setAttribute("aria-pressed", String(b.dataset.setLang === lang));
+      });
+      try { localStorage.setItem("lang", lang); } catch (e) {}
+    }
+
+    document.querySelectorAll("[data-set-lang]").forEach(function (b) {
+      b.addEventListener("click", function () { setLang(b.dataset.setLang); });
+    });
+    setLang(initial);
+  })();
+</script>
+</body>
+</html>
